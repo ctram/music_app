@@ -1,0 +1,16 @@
+<%= insert_w_h1_heading("#{@band.name}'s Page") %>
+<hr>
+<%= button_to 'Back to all bands', bands_url, method: :get %>
+<br><BR>
+<h3>Albums</h3>
+<% @band.albums.each do |album| %>
+  <ul>
+    <li>
+      <%= link_to album.title, album_url(album) %>
+    </li>
+  </ul>
+<% end %>
+
+<%= button_to 'Edit Band', edit_band_url(@band), method: :get %>
+<%= button_to 'Remove Band', band_url(@band), method: :delete %>
+<BR><BR>

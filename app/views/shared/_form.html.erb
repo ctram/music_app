@@ -1,0 +1,38 @@
+
+
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |msg| %>
+    <%= msg %>
+    <br>
+  <% end %>
+  <br><BR>
+<% end %>
+
+
+<% if flash[:notice] %>
+  <% flash[:notice].each do |msg| %>
+    <%= msg %>
+    <br>
+  <% end %>
+  <br><BR>
+<% end %>
+
+<form action='<%= action_url %>' method='POST'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+
+  <label>
+    Email
+    <input type='text' name='user[email]' id='user_email'>
+  </label>
+
+  <label>
+    Password
+    <input type='password' name='user[password]' id='user_password'>
+  </label>
+
+  <input type='submit' value='<%= submit_button_text %>'>
+</form>
+
+<br><BR><BR>
+<%= button_to "Reset #{reset_button_text} Page", reset_url, method: :get %>

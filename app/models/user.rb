@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
+  after_initialize :ensure_session_token
   validates :email, presence: true
   validates :password, length: {minimum: 1, allow_nil: true}
   validates :password_digest, presence: {message: 'Must enter a password'}
-  after_initialization :ensure_session_token
 
-attr_reader :password
+  attr_reader :password
 
   def self.find_by_credentials(email, password)
     if email == '' or password == ''
@@ -34,7 +34,7 @@ attr_reader :password
   end
 
   def ensure_session_token
-    self.session_token || reset_session_token!
+    self.session_token ||= reset_session_token!
   end
 
 end

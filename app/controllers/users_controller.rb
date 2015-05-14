@@ -10,8 +10,8 @@ class UsersController < ApplicationController
 
     def create
       @user = User.new(user_params)
-      @user.reset_session_token!
       if @user.save
+        sign_in(@user)
         redirect_to users_url
       else
         flash[:errors] = @user.errors.full_messages

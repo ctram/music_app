@@ -1,28 +1,4 @@
-Sign In!
+<h1>Sign In!</h1>
 <BR><BR>
-<% if flash[:errors] %>
-  <% flash[:errors].each do |msg| %>
-    <%= msg %>
-    <br>
-  <% end %>
-  <br><BR>
-<% end %>
 
-<form action=' <%= session_url %>' method='POST'>
-  <input type='hidden' name='authenticity_token' value=' <%= form_authenticity_token %>'
-
-  <label>
-    Email
-    <input type='text' name='user[email]' value='<%= @user.email %>'>
-  </label>
-
-  <label>
-    Password
-    <input type='password' name='user[password]'>
-  </label>
-
-  <input type='submit' value='Sign In!'>
-
-</form>
-
-<%= button_to 'Reset Sign In Page', new_session_url, method: :get %>
+<%= render 'shared/form', action_url: session_url, submit_button_text: 'Sign In!', reset_button_text: 'Sign In', reset_url: new_session_url %>

@@ -1,0 +1,8 @@
+<h1>Bands Index</h1>
+<% @bands.each do |band| %>
+  <ul>
+    <li>
+      <%= link_to band.name, band_url(band) %>
+    </li>
+  </ul>
+<% end %>
