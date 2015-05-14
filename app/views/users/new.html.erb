@@ -1,0 +1,29 @@
+Sign Up!
+<br><BR>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |msg| %>
+    <%= msg %>
+    <br>
+  <% end %>
+  <br><BR>
+<% end %>
+
+<form action='<%= users_url %>' method='POST'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+
+  <label>
+    Email
+    <input type='text' name='user[email]' id='user_email'>
+  </label>
+
+  <label>
+    Password
+    <input type='password' name='user[password]' id='user_password'>
+  </label>
+
+  <input type='submit' value='Sign Up!'>
+</form>
+
+<br><BR><BR>
+<%= button_to 'Reset New User Page', new_user_url, method: :get %>
