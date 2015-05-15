@@ -11,6 +11,7 @@
   </ul>
 <% end %>
 
+<%= button_to 'Add album', new_band_album_url(@band), method: :get %>
 <%= button_to 'Edit Band', edit_band_url(@band), method: :get %>
 <%= button_to 'Remove Band', band_url(@band), method: :delete %>
 <BR><BR>

@@ -1,0 +1,55 @@
+<h1>Add Track</h1>
+
+<%= render 'shared/flashes' %>
+
+Band:
+<%= link_to @band.name, band_url(@band) %>
+
+<BR><BR>
+
+Album:
+<%= @album.title %>
+
+<hr>
+
+<form action='<%= tracks_url %>' method='POST'>
+  <input type='hidden' name='_method' value='POST'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+
+  <label>
+    Title
+    <input type='text' name='track[title]' value='<%= @track.title %>'>
+  </label>
+  <BR><BR>
+
+  <label>
+    Album
+    <select name='track[album_id]'>
+      <% @albums.each do |album| %>
+        <option value='<%= album.id %>'
+          <%= "selected" if @track.album_id == album.id %>
+        >
+          <%= album.title %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+  <BR><BR>
+
+  <label>
+    Track Type
+  </label>
+  <p>
+    <label>
+      Bonus
+      <input type='radio' name='track[track_type]' value='bonus'>
+    </label>
+
+    <label>
+      Regular
+      <input type='radio' name='track[track_type]' value='regular'>
+    </label>
+  </p>
+
+  <input type='submit' value='Add track'>
+</form>

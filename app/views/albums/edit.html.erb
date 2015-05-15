@@ -1,0 +1,22 @@
+<h1> <%= @album.name %>
+<h2>Edit album details</h2>
+
+<form action='<%= album_url(@album) %>' method='POST'>
+  <input type='hidden' name='_method' value='PATCH'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+  <label>
+    Title
+    <input type='text' name='album[title]' value='<%= @album.title %>'>
+  </label>
+  
+  <label>
+    Band
+  </label>
+
+  <label>
+    Title
+    <input type='text' name='album[title]' value='<%= @album.title %>'>
+  </label>
+
+  <input type='submit' value='Edit album'>
+</form>

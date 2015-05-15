@@ -1,0 +1,13 @@
+<%= @track.title %>
+<HR>
+
+Band
+<%= @track.band.name %>
+
+<BR><BR>
+
+Album
+<%= @track.album.title %>
+<BR><BR>
+
+<%= render 'tracks/form', track: @track %>

@@ -1,4 +1,6 @@
 <h1>Sign Up!</h1>
 <br><BR>
 
+<%= render 'shared/flashes' %>
+
 <%= render 'shared/form', action_url: users_url, submit_button_text: 'Sign Up!', reset_button_text: 'Sign Up', reset_url: new_user_url %>

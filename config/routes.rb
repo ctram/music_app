@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     resources :tracks, on: :member, only: [:new]
   end
 
-  resources :tracks, except: [:new]
+  resources :tracks, except: [:new] do
+    resources :notes, on: :member, only: [:create]
+  end
 end

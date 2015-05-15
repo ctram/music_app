@@ -1,0 +1,42 @@
+<h1><%= @band.name %></h1>
+<h2>Add Album</h2>
+
+<%= render 'shared/flashes' %>
+
+<form action='<%= albums_url %>' method='POST'>
+  <input type='hidden' name='_method' value='POST'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+  <label>
+    Title
+    <input type='text' name='album[title]' value='<%= @album.title %>'>
+  </label>
+
+  <label>
+    Recording Type
+    <label>
+      Live
+      <input type='radio' name='album[recording_type]' value='Live'>
+    </label>
+    <label>
+      Studio
+      <input type='radio' name='album[recording_type]' value='Studio'>
+  </label>
+  </label>
+
+  <label>
+    Band
+    <select name='album[band_id]'>
+      <% @bands.each do |band| %>
+        <option value='<%= band.id %>'
+          <% unless @album.band.nil? %>
+            <%= "selected" if @album.band.id == band.id %>
+          <% end %>
+        >
+          <%= band.name %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+
+  <input type='submit' value='Add album'>
+</form>

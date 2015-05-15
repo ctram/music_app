@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :redirect_to_sign_in_page
 
   def index
     @albums = Album.all
@@ -9,14 +10,19 @@ class AlbumsController < ApplicationController
   end
 
   def new
+    @bands = Band.all
+    @band = Band.find(params[:band_id])
     @album = Album.new
+    @album.band = @band
   end
 
   def create
+    @bands = Band.all
+    @band = Band.find(params[:album][:band_id])
     @album = Album.new(album_params)
-    if @album.save
+    if @album.save!
       flash.now[:notice] = ['Successfully added album!']
-      redirect_to albums_url
+      redirect_to band_url(@band)
     else
       flash.now[:errors] = @album.errors.full_messages
       render :new
@@ -47,6 +53,6 @@ class AlbumsController < ApplicationController
   private
 
   def album_params
-    params.require(:album).permit(:name)
+    params.require(:album).permit(:title, :band_id, :recording_type)
   end
 end

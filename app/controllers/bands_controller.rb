@@ -1,4 +1,5 @@
 class BandsController < ApplicationController
+  before_action :redirect_to_sign_in_page
 
   def index
     @bands = Band.all

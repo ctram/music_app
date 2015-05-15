@@ -1,8 +1,21 @@
 <h1><%= @album.band.name %></h1>
 <hr>
-<h2><%= @album.title %></h2>
+
+
+Album title:
+<h2>
+  <%= @album.title %>
+</h2>
+
+Recording type:
+<%= @album.recording_type %>
+
 <%= button_to "Back to band's page", band_url(@album.band), method: :get %>
+
+<%= button_to "Add track", new_album_track_url(@album), method: :get %>
+
 <br><BR>
+
 <h3>Tracks</h3>
   <% @album.tracks.each do |track| %>
     <ul>

@@ -1,5 +1,8 @@
 class Album < ActiveRecord::Base
-  validates :title, :recording_type, :band_id, presence: true
+  validates :title, presence: true
+  validates :recording_type,
+    inclusion: {in: %w(Live Studio)}
+  validates :band_id, presence: true
 
   belongs_to(
     :band,
